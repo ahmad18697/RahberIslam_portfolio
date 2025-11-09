@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -45,6 +46,9 @@
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                        <a href="#" id="downloadResumeHero" class="btn btn-outline-resume">
+                            <i class="fas fa-file-pdf"></i> Download Resume
+                        </a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -69,6 +73,14 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>My name is Rahbar Islam, I am a Certified Ethical Hacker. My portfolio showcases my full stack projects. As an MCA student, I have developed applications demonstrating my skills in web development, problem-solving, and creating efficient solutions.</p>
+                    
+                    <div class="resume-download" style="margin: 20px 0;">
+                        <a href="#" id="downloadResume" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                        <span id="resumeStatus" style="margin-left: 15px; color: #666; font-size: 0.9em;"></span>
+                    </div>
+                    
                     <div class="personal-info">
                         <div class="info-item">
                             <span class="info-label">Date of Birth:</span>
@@ -177,47 +189,37 @@
         <div class="container">
             <h2 class="section-title">Certifications</h2>
             <div class="certifications-grid">
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-trophy"></i>
+                <!-- Certified Ethical Hacker -->
+                <div class="certificate-card">
+                    <div class="certificate-preview">
+                        <img src="images/certificate.jpeg" alt="Certified Ethical Hacker" class="certificate-image" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/f5f5f5/999999?text=Ethical+Hacker'">
+                        <div class="certificate-overlay">
+                            <a href="images/certificate.jpeg" target="_blank" class="view-btn">View Certificate</a>
+                        </div>
                     </div>
-                    <h3>ANVESHANA 2024 Hackathon (10th Rank)</h3>
-                    <p>Patna University</p>
+                    <div class="certificate-details">
+                        <h3>Certified Ethical Hacker</h3>
+                        <p class="issuer">FICKLEM</p>
+                        <p class="file-name">certificate.jpeg</p>
+                    </div>
                 </div>
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-shield-alt"></i>
+
+                <!-- Founder's Talk Participation -->
+                <div class="certificate-card">
+                    <div class="certificate-preview">
+                        <div class="pdf-preview">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF Certificate</span>
+                        </div>
+                        <div class="certificate-overlay">
+                            <a href="images/ParticipationCertificate.pdf" target="_blank" class="view-btn">View Certificate</a>
+                        </div>
                     </div>
-                    <h3>Certified Ethical Hacker</h3>
-                    <p>FN Career (Rajat Grover)</p>
-                </div>
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-robot"></i>
+                    <div class="certificate-details">
+                        <h3>Founder's Talk Participation</h3>
+                        <p class="issuer">Certificate of Participation</p>
+                        <p class="file-name">ParticipationCertificate.pdf</p>
                     </div>
-                    <h3>International Workshop on AI & ML</h3>
-                    <p>Lovely Professional University</p>
-                </div>
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <h3>Git and GitHub for Beginners</h3>
-                    <p>Udemy</p>
-                </div>
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fab fa-aws"></i>
-                    </div>
-                    <h3>AWS Services for Solutions Architect Associate</h3>
-                    <p>Udemy</p>
-                </div>
-                <div class="certification-card">
-                    <div class="certification-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3>Tech Hacker Pre-Hacking Course</h3>
-                    <p>Bitten Tech Solutions</p>
                 </div>
             </div>
         </div>
@@ -228,64 +230,42 @@
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
+                <!-- Animation Baba -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/certificate.jpeg" alt="Corporate Seminar" onerror="this.src='https://via.placeholder.com/400x250/f5f5f5/999999?text=Corporate+Seminar'">
+                        <img src="images/chatApp.png" alt="Animation Baba" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/6d28d9/ffffff?text=Animation+Baba'">
+                        <div class="project-overlay"></div>
                     </div>
                     <div class="project-content">
-                        <h3>Corporate Seminar</h3>
-                        <p>A platform for managing and attending corporate seminars and events.</p>
-                        <a href="https://saniyanizami0001.wixsite.com/my-site-5" target="_blank" class="btn btn-outline">View Project</a>
+                        <h3>Animation Baba</h3>
+                        <p>A creative animation studio delivering high-quality motion design and storytelling visuals.</p>
+                        <a href="https://saniyanizami0001.wixsite.com/animation-baba" target="_blank" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
+                
+                <!-- Baba Ji Mahal -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/chatApp.png" alt="Chat App" onerror="this.src='https://via.placeholder.com/400x250/f5f5f5/999999?text=Chat+App'">
-                    </div>
-                    <div class="project-content">
-                        <h3>Chat App</h3>
-                        <p>Real-time chat application providing users with an engaging messaging experience.</p>
-                        <a href="#" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250/f5f5f5/999999?text=Student+Cards" alt="Student Cards">
+                        <img src="images/realState.png" alt="Baba Ji Mahal" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/1e40af/ffffff?text=Baba+Ji+Mahal'">
+                        <div class="project-overlay"></div>
                     </div>
                     <div class="project-content">
                         <h3>Baba Ji Mahal</h3>
-                        <p>Restaurant website showcasing menu, location, and contact information.</p>
+                        <p>An online clothing marketplace offering trendy ethnic and modern fashion collections.</p>
                         <a href="https://saniyanizami0001.wixsite.com/baba-ji-mahal" target="_blank" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
+                
+                <!-- MySite Tech Solutions -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/learnConcept.png" alt="Learn-Concept" onerror="this.src='https://via.placeholder.com/400x250/f5f5f5/999999?text=Learn-Concept'">
+                        <img src="images/calculationGame.png" alt="MySite Tech Solutions" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/0369a1/ffffff?text=MySite+Tech'">
+                        <div class="project-overlay"></div>
                     </div>
                     <div class="project-content">
-                        <h3>Learn-Concept</h3>
-                        <p>React.js platform enabling students to navigate curated subjects and access content.</p>
-                        <a href="#" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/calculationGame.png" alt="Calculation Game" onerror="this.src='https://via.placeholder.com/400x250/f5f5f5/999999?text=Calculation+Game'">
-                    </div>
-                    <div class="project-content">
-                        <h3>Calculation Game</h3>
-                        <p>Fun learning game for children to improve mental calculation skills.</p>
-                        <a href="#" class="btn btn-outline">Play Game</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/realState.png" alt="Real Estate Platform" onerror="this.src='https://via.placeholder.com/400x250/f5f5f5/999999?text=Real+Estate+Platform'">
-                    </div>
-                    <div class="project-content">
-                        <h3>Real Estate Platform</h3>
-                        <p>PHP/MySQL system for property listing, filtering, and inquiries.</p>
-                        <a href="#" class="btn btn-outline">View Project</a>
+                        <h3>MySite Tech Solutions</h3>
+                        <p>A software development company providing innovative digital products and web solutions for businesses.</p>
+                        <a href="https://saniyanizami0001.wixsite.com/my-site-5" target="_blank" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
             </div>
@@ -296,7 +276,9 @@
     <section id="contact" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
+            <div class="contact-form-container">
+                <!-- Form Status Messages -->
+                <div id="formStatus" class="form-status"></div>
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
@@ -326,20 +308,43 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="3109333e-1e16-4d4c-9149-cd591deea645">
+                    <input type="hidden" name="subject" value="New Message from Portfolio">
+                    <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                    <input type="hidden" name="to_email" value="rahberislam53@gmail.com">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    
+                    <div id="formStatus" class="form-status"></div>
+                    
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required
+                               class="form-control" oninput="validateInput(this)">
+                        <span class="error-message"></span>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required
+                               class="form-control" oninput="validateInput(this)">
+                        <span class="error-message"></span>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <textarea id="message" name="message" placeholder="Your Message" required
+                                 class="form-control" oninput="validateInput(this)" rows="5"></textarea>
+                        <span class="error-message"></span>
                     </div>
+                    
                     <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader" style="display: none;">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Sending...
+                            </span>
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
@@ -381,6 +386,9 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="contact-form.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

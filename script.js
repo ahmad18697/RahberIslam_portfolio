@@ -11,6 +11,43 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.toggle('no-scroll');
     });
     
+    // Resume Download Functionality
+    const downloadResume = document.getElementById('downloadResume');
+    const resumeStatus = document.getElementById('resumeStatus');
+    
+    if (downloadResume) {
+        downloadResume.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const originalText = downloadResume.innerHTML;
+            downloadResume.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+            resumeStatus.textContent = 'Preparing your resume...';
+            
+            // Simulate download (replace with actual resume file later)
+            setTimeout(() => {
+                // Create a temporary link to trigger download
+                const link = document.createElement('a');
+                link.href = '#'; // Replace with actual resume path
+                link.download = 'Rahbar_Islam_Resume.pdf';
+                
+                // Show message (since we don't have an actual file yet)
+                resumeStatus.textContent = 'Please contact me for my resume';
+                downloadResume.innerHTML = originalText;
+                
+                // In a real scenario, you would uncomment this:
+                // document.body.appendChild(link);
+                // link.click();
+                // document.body.removeChild(link);
+                
+                // Reset status after 5 seconds
+                setTimeout(() => {
+                    resumeStatus.textContent = '';
+                }, 5000);
+            }, 1000);
+        });
+    }
+    
     // Close mobile menu when clicking on a nav link
     navLinkItems.forEach(link => {
         link.addEventListener('click', () => {
