@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
@@ -69,36 +70,68 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            
             <div class="about-content">
                 <div class="about-text">
-                    <p>My name is Rahbar Islam, I am a Certified Ethical Hacker. My portfolio showcases my full stack projects. As an MCA student, I have developed applications demonstrating my skills in web development, problem-solving, and creating efficient solutions.</p>
-                    
-                    <div class="resume-download" style="margin: 20px 0;">
-                        <a href="#" id="downloadResume" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                        <span id="resumeStatus" style="margin-left: 15px; color: #666; font-size: 0.9em;"></span>
+                    <div class="about-card">
+                        <p class="about-description">My name is <span class="highlight-text">Rahbar Islam</span>, a Certified Ethical Hacker and passionate Full Stack Developer. With expertise in web development and cybersecurity, I create efficient, secure, and user-friendly applications that solve real-world problems.</p>
+                        
+                        <div class="personal-info">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Date of Birth</span>
+                                        <span class="info-value">14 November 2003</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-venus-mars"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Gender</span>
+                                        <span class="info-value">Male</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Nationality</span>
+                                        <span class="info-value">Indian</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">Location</span>
+                                        <span class="info-value">Phagwara, India</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="resume-download">
+                            <a href="#" id="downloadResume" class="btn btn-primary btn-download">
+                                <i class="fas fa-download"></i>
+                                <span>Download Resume</span>
+                                <div class="btn-hover-effect"></div>
+                            </a>
+                            <span id="resumeStatus" class="resume-status"></span>
+                        </div>
                     </div>
-                    
-                    <div class="personal-info">
-                        <div class="info-item">
-                            <span class="info-label">Date of Birth:</span>
-                            <span class="info-value">14/11/2003</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Gender:</span>
-                            <span class="info-value">Male</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Nationality:</span>
-                            <span class="info-value">Indian</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Location:</span>
-                            <span class="info-value">Phagwara, India</span>
-                        </div>
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -107,34 +140,96 @@
     <!-- Education Section -->
     <section id="education" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
+            <div class="section-header">
+                <h2 class="section-title">My Education Journey</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="education-timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="timeline-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
                     <div class="timeline-content">
-                        <h3>Master of Computer Application</h3>
-                        <p class="timeline-location">Lovely Professional University, Punjab</p>
-                        <p class="timeline-date">Pursuing</p>
+                        <div class="timeline-card">
+                            <span class="timeline-date">Pursuing</span>
+                            <h3>Master of Computer Application</h3>
+                            <p class="timeline-location">
+                                <i class="fas fa-university"></i> Lovely Professional University, Punjab
+                            </p>
+                            <div class="timeline-details">
+                                <span class="timeline-tag">Ongoing</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
+                
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="timeline-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
                     <div class="timeline-content">
-                        <h3>Bachelor of Science (Mathematics)</h3>
-                        <p class="timeline-location">Patna University, Patna</p>
-                        <p class="timeline-date">2024 | 71%</p>
+                        <div class="timeline-card">
+                            <span class="timeline-date">2024 | 71%</span>
+                            <h3>Bachelor of Science (Mathematics)</h3>
+                            <p class="timeline-location">
+                                <i class="fas fa-university"></i> Patna University, Patna
+                            </p>
+                            <div class="timeline-details">
+                                <span class="timeline-tag">Completed</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
+                
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="timeline-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
                     <div class="timeline-content">
-                        <h3>Higher Secondary (HSC)</h3>
-                        <p class="timeline-location">BSEB Kishanganj</p>
-                        <p class="timeline-date">2021 | 83.5%</p>
+                        <div class="timeline-card">
+                            <span class="timeline-date">2021 | 83.5%</span>
+                            <h3>Higher Secondary (HSC)</h3>
+                            <p class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i> BSEB Kishanganj
+                            </p>
+                            <div class="timeline-details">
+                                <span class="timeline-tag">Completed</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
+                
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <div class="timeline-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                    </div>
                     <div class="timeline-content">
-                        <h3>Secondary (SSC)</h3>
-                        <p class="timeline-location">BSEB Kishanganj</p>
-                        <p class="timeline-date">2019 | 84.40%</p>
+                        <div class="timeline-card">
+                            <span class="timeline-date">2019 | 84.40%</span>
+                            <h3>Secondary (SSC)</h3>
+                            <p class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i> BSEB Kishanganj
+                            </p>
+                            <div class="timeline-details">
+                                <span class="timeline-tag">Completed</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,6 +363,19 @@
                         <a href="https://saniyanizami0001.wixsite.com/my-site-5" target="_blank" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
+                
+                <!-- Product vs Service Based Company -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/pr-ser.jpg" alt="Product vs Service Based Company" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/4f46e5/ffffff?text=Product+vs+Service+Based+Company'">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Product vs Service Based Company</h3>
+                        <p>An in-depth analysis comparing product-based and service-based business models, including key differences, advantages, and industry examples.</p>
+                        <a href="images/Product_Based.pdf" target="_blank" class="btn btn-outline">View Project</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -389,6 +497,18 @@
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="contact-form.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

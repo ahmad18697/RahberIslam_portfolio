@@ -1,108 +1,219 @@
+// Portfolio JavaScript - All buttons working
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
+    console.log('Portfolio loaded successfully');
+    
+    // 1. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navLinkItems = document.querySelectorAll('.nav-link');
     
-    // Toggle mobile menu
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
-    });
-    
-    // Resume Download Functionality
-    const downloadResume = document.getElementById('downloadResume');
-    const resumeStatus = document.getElementById('resumeStatus');
-    
-    if (downloadResume) {
-        downloadResume.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const originalText = downloadResume.innerHTML;
-            downloadResume.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
-            resumeStatus.textContent = 'Preparing your resume...';
-            
-            // Simulate download (replace with actual resume file later)
-            setTimeout(() => {
-                // Create a temporary link to trigger download
-                const link = document.createElement('a');
-                link.href = '#'; // Replace with actual resume path
-                link.download = 'Rahbar_Islam_Resume.pdf';
-                
-                // Show message (since we don't have an actual file yet)
-                resumeStatus.textContent = 'Please contact me for my resume';
-                downloadResume.innerHTML = originalText;
-                
-                // In a real scenario, you would uncomment this:
-                // document.body.appendChild(link);
-                // link.click();
-                // document.body.removeChild(link);
-                
-                // Reset status after 5 seconds
-                setTimeout(() => {
-                    resumeStatus.textContent = '';
-                }, 5000);
-            }, 1000);
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         });
     }
     
-    // Close mobile menu when clicking on a nav link
-    navLinkItems.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.classList.remove('no-scroll');
+    // Helper function for smooth scrolling
+    function smoothScrollTo(target) {
+        const element = document.querySelector(target);
+        if (element) {
+            const headerOffset = document.querySelector('.header')?.offsetHeight || 80;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+    
+    // 2. Smooth Scrolling for Navigation and Contact Button
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if it's a download button
+            if (this.id === 'downloadResumeHero' || this.id === 'downloadResume') {
+                return;
+            }
+            
+            if (href === '#' || href === '#0') return;
+            
+            e.preventDefault();
+            
+            // Close mobile menu if open
+            if (hamburger && navLinks) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+            
+            // Scroll to target
+            smoothScrollTo(href);
+            
+            // Update URL
+            window.history.pushState({}, '', href);
         });
     });
     
-    // Sticky header on scroll
+    // 3.// Resume Download Functionality
+    const downloadButtons = [
+        document.getElementById('downloadResume'),
+        document.getElementById('downloadResumeHero')
+    ];
+    const resumeStatus = document.getElementById('resumeStatus');
+    
+    async function handleResumeDownload(e) {
+        if (e) e.preventDefault();
+        
+        const statusElement = document.getElementById('resumeStatus');
+        const button = e?.currentTarget;
+        
+        // Show loading state
+        if (button) {
+            button.disabled = true;
+            button.classList.add('downloading');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+        }
+        
+        if (statusElement) {
+            statusElement.textContent = 'Preparing your resume...';
+            statusElement.style.color = '#4CAF50';
+            statusElement.style.opacity = '1';
+        }
+        
+        try {
+            // Add a small delay to show the loading state
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Create a temporary link to trigger download
+            const link = document.createElement('a');
+            link.href = 'resume/Resume.jpeg';
+            link.download = 'Rahbar_Islam_Resume.jpg';
+            
+            // For mobile browsers, open in new tab
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                window.open(link.href, '_blank');
+                if (statusElement) {
+                    statusElement.textContent = 'Opening resume in new tab...';
+                }
+            } else {
+                // For desktop, trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                if (statusElement) {
+                    statusElement.textContent = 'Download started! Check your downloads folder.';
+                }
+            }
+            
+            // Log the download event
+            console.log('Resume download triggered');
+            
+        } catch (error) {
+            console.error('Error downloading resume:', error);
+            
+            if (statusElement) {
+                statusElement.textContent = 'Error: Could not download resume. Trying alternative method...';
+                statusElement.style.color = '#f4436d';
+                
+                // Fallback: Open in new tab if download fails
+                try {
+                    const fallbackLink = document.createElement('a');
+                    fallbackLink.href = 'resume/Resume.jpeg';
+                    fallbackLink.target = '_blank';
+                    document.body.appendChild(fallbackLink);
+                    fallbackLink.click();
+                    document.body.removeChild(fallbackLink);
+                    
+                    statusElement.textContent = 'Opened resume in new tab.';
+                } catch (fallbackError) {
+                    console.error('Fallback download failed:', fallbackError);
+                    statusElement.textContent = 'Error: Could not open resume. Please try again later.';
+                }
+            }
+        } finally {
+            // Reset button state
+            if (button) {
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.classList.remove('downloading');
+                    button.innerHTML = '<i class="fas fa-download"></i><span>Download Resume</span><div class="btn-hover-effect"></div>';
+                    
+                    // Fade out status message after delay
+                    if (statusElement) {
+                        setTimeout(() => {
+                            statusElement.style.opacity = '0';
+                            setTimeout(() => {
+                                statusElement.textContent = '';
+                                statusElement.style.opacity = '1';
+                            }, 300);
+                        }, 3000);
+                    }
+                }, 500);
+            }
+        }
+    }
+    
+    // Add click events to all download buttons
+    downloadButtons.forEach((button, index) => {
+        if (button) {
+            button.removeEventListener('click', handleResumeDownload); // Remove existing to prevent duplicates
+            button.addEventListener('click', handleResumeDownload);
+            console.log(`Added click handler to download button ${index + 1}`);
+        } else {
+            console.warn(`Download button ${index + 1} not found`);
+        }
+    });
+    
+    // 4. Sticky Header and Back to Top Button
     const header = document.querySelector('.header');
     const backToTopBtn = document.getElementById('backToTop');
     let lastScroll = 0;
     
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        
-        // Sticky header
-        if (currentScroll > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Show/hide back to top button
-        if (currentScroll > 500) {
-            backToTopBtn.classList.add('active');
-        } else {
-            backToTopBtn.classList.remove('active');
-        }
-        
-        lastScroll = currentScroll;
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+    if (header) {
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.scrollY;
             
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+            // Sticky header
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
+            
+            // Show/hide back to top button
+            if (backToTopBtn) {
+                if (currentScroll > 500) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            }
+            
+            lastScroll = currentScroll;
+            
+            // Highlight active navigation link
+            highlightNav();
         });
-    });
+    }
+    
+    // Back to top button click handler
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
     
     // Active navigation link highlighting
     const sections = document.querySelectorAll('section');
@@ -120,14 +231,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         navLinkItems.forEach(link => {
-            link.classList.remove('active');
             if (link.getAttribute('href') === `#${current}`) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
     }
-    
-    window.addEventListener('scroll', highlightNav);
     
     // Form submission
     const contactForm = document.getElementById('contactForm');
@@ -138,11 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get form data
             const formData = new FormData(this);
-            const formObject = {};
-            
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
             
             // Here you would typically send the form data to a server
             console.log('Form submitted:', formObject);
